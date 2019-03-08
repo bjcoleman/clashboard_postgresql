@@ -1,0 +1,8 @@
+
+python-dotenv==0.10.1
+psycopg2==2.7.7
+pandas==0.24.1
+dash==0.39.0
+dash_core_components==0.44.0
+dash_html_components==0.14.0
+plotly==3.6.1
