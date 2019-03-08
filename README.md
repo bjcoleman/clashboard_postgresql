@@ -6,7 +6,7 @@ stored in a PostgreSQL database hosted by
 [Clinical Traials Transformation Initiative](https://aact.ctti-clinicaltrials.org/).
 
 
-## Launc on AWS
+## Launch on AWS
 
 * Create an t2.medium EC2 instance based on Ubuntu 18
 * `sudo apt-get update`
