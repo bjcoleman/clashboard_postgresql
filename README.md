@@ -23,5 +23,5 @@ stored in a PostgreSQL database hosted by
   password=your_password
 
   ```
-* sudo python3 app.py
+* sudo gunicorn app:app.server
 
