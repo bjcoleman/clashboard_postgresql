@@ -44,6 +44,9 @@ app.layout = html.Div(children=[
     html.H1(children='ClinicalTrails.gov Data Exploration'),
 
     html.Div(
+        dcc.Graph(
+            id='my-graph'
+        ),
         id='plot-area'
     ),
 
@@ -55,11 +58,22 @@ app.layout = html.Div(children=[
         ],
         placeholder='Select a property',
         id='dropdown-id'
-    )
+    ),
+
+    html.Div(id='click-data'),
 ])
 
 
-@app.callback(Output('plot-area', 'children'),
+import json
+
+@app.callback(
+    Output('click-data', 'children'),
+    [Input('my-graph', 'clickData')])
+def display_click_data(clickData):
+    return json.dumps(clickData, indent=2)
+
+
+@app.callback(Output('my-graph', 'figure'),
               [Input('dropdown-id', 'value')])
 def update_plot(value):
 
@@ -77,11 +91,10 @@ def update_plot(value):
         title = 'Phase'
     else:
         labels = []
-        values= []
+        values = []
         title = ''
 
-    return dcc.Graph(
-        figure=go.Figure(
+    return go.Figure(
             data=[
                 go.Pie(labels=labels, values=values)
             ],
@@ -90,10 +103,7 @@ def update_plot(value):
                 showlegend=True,
                 margin=go.layout.Margin(l=40, r=0, t=40, b=30)
             )
-        ),
-        style={'height': 300},
-        id='my-graph'
-    )
+        )
 
 
 if __name__ == '__main__':
